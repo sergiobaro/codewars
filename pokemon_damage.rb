@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 
 
 def calculate_damage(type, enemy_type, attack, defense)
