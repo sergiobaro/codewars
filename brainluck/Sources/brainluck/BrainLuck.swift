@@ -128,7 +128,7 @@ class BrainLuck {
     var currentOperation = self.code[index]
     var bracketCount = 1
 
-    while currentOperation != "]" && bracketCount != 0 {
+    while !(currentOperation == "]" && bracketCount == 0) {
       index = self.code.index(index, offsetBy: 1)
       currentOperation = self.code[index]
       
@@ -147,7 +147,7 @@ class BrainLuck {
     var currentOperation = self.code[index]
     var bracketCount = 1
 
-    while currentOperation != "[" && bracketCount != 0 {
+    while !(currentOperation == "[" && bracketCount == 0) {
       index = self.code.index(index, offsetBy: -1)
       currentOperation = self.code[index]
       
