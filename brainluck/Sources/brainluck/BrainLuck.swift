@@ -38,13 +38,14 @@ class BrainLuck {
 
     return self.output
   }
+  
+}
 
-  // PRIVATE
+private extension BrainLuck {
 
   private func start() {
     while self.codeIndex != self.code.endIndex {
       let operation = self.code[self.codeIndex]
-      print("op: \(operation)")
       
       self.updateDataSizeIfNeeded()
       
@@ -58,8 +59,6 @@ class BrainLuck {
 
         case "[": jumpForwardIfZero()
         case "]": jumpBackwardIfNotZero()
-
-        case "d": debug()
 
         default: break
       }
@@ -103,12 +102,6 @@ class BrainLuck {
     if data != 0 {
       self.codeIndex = self.findPreviousBracket()
     }
-  }
-
-  private func debug() {
-    print("input: \(self.input)")
-    print("data: \(self.data)")
-    print("output: \(self.output)")
   }
 
   // HELPERS
