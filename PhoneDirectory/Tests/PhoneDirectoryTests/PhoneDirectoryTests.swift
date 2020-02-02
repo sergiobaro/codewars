@@ -2,7 +2,7 @@ import XCTest
 @testable import PhoneDirectory
 
 final class PhoneDirectoryTests: XCTestCase {
-  let dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n 133, Green, Rd. <E Kustur> NY-56423 ;+1-541-914-3010\n"
+  static let dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n 133, Green, Rd. <E Kustur> NY-56423 ;+1-541-914-3010\n"
   + "+1-541-984-3012 <P Reed> /PO Box 530; Pollocksville, NC-28573\n :+1-321-512-2222 <Paul Dive> Sequoia Alley PQ-67209\n"
   + "+1-741-984-3090 <Peter Reedgrave> _Chicago\n :+1-921-333-2222 <Anna Stevens> Haramburu_Street AA-67209\n"
   + "+1-111-544-8973 <Peter Pan> LA\n +1-921-512-2222 <Wilfrid Stevens> Wild Street AA-67209\n"
@@ -25,12 +25,55 @@ final class PhoneDirectoryTests: XCTestCase {
   + "+12-099-500-8000 <Pete Highman> Ontario Bd.\n +8-931-512-4855 <W Mount> Oxford Street CQ-23071\n"
   + "<Donald Drinkaw> Moon Street, +3-098-512-2222, Peterville\n"
 
-  func testing(_ dr: String, _ num: String, _ expected: String) {
-      XCTAssertEqual(phone(dr, num), expected, "should return \(expected)")
+  let directory = PhoneDirectory(string: dr)
+  
+  func test_1() {
+    let r = directory["48-421-674-8974"]
+    XCTAssertEqual(r.first?.phone, "48-421-674-8974")
+    XCTAssertEqual(r.first?.name, "Anastasia")
+    XCTAssertEqual(r.first?.address, "Via Quirinal Roma")
   }
   
-  func testExample() {
-      testing(dr, "48-421-674-8974", "Phone => 48-421-674-8974, Name => Anastasia, Address => Via Quirinal Roma")
-      testing(dr, "19-421-674-8974", "Phone => 19-421-674-8974, Name => C Powel, Address => Chateau des Fosses Strasbourg F-68000")
+  func test_2() {
+    //  1333, Green, Road <F Fulgur> NW-46423 ;+6-541-914-3010!
+    let r = directory["1-541-914-3010"]
+    XCTAssertEqual(r.first?.phone, "1-541-914-3010")
+    XCTAssertEqual(r.first?.name, "E Kustur")
+    XCTAssertEqual(r.first?.address, "133 Green Rd. NY-56423")
+  }
+  
+  func test_3() {
+    let r = directory["8-931-512-4855"]
+    XCTAssertEqual(r.first?.phone, "8-931-512-4855")
+    XCTAssertEqual(r.first?.name, "W Mount")
+    XCTAssertEqual(r.first?.address, "Oxford Street CQ-23071")
+  }
+  
+  func test_4() {
+    let r = directory["1-908-512-2222"]
+    XCTAssertEqual(r.first?.phone, "1-908-512-2222")
+    XCTAssertEqual(r.first?.name, "Peter O'Brien")
+    XCTAssertEqual(r.first?.address, "High Street CC-47209")
+  }
+  
+  func test_5() {
+    let r = directory["1-541-754-3010"]
+    XCTAssertEqual(r.first?.phone, "1-541-754-3010")
+    XCTAssertEqual(r.first?.name, "J Steeve")
+    XCTAssertEqual(r.first?.address, "156 Alphand St.")
+  }
+  
+  func test_6() {
+    let r = directory["1-098-512-2222"]
+    
+    XCTAssertEqual(r.count, 2)
+  }
+  
+  func test_7() {
+    // +5-541-984-3012 <Peter Reeves> /PO Box 5300; Albertville, SC-28573
+    let r = directory["5-541-984-3012"]
+    XCTAssertEqual(r.first?.phone, "5-541-984-3012")
+    XCTAssertEqual(r.first?.name, "Peter Reeves")
+    XCTAssertEqual(r.first?.address, "PO Box 5300 Albertville SC-28573")
   }
 }
