@@ -1,4 +1,4 @@
-package src.test
+package src.test.encryptthis
 
 import encryptthis.encryptThis
 import encryptthis.encryptWord

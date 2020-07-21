@@ -1,4 +1,4 @@
-package src.test
+package src.test.equalsidesofarray
 
 import equalsidesofarray.findEvenIndex
 import org.junit.jupiter.api.Assertions.assertEquals

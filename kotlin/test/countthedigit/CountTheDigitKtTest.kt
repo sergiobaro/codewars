@@ -1,4 +1,4 @@
-package src.test
+package src.test.countthedigit
 
 import countthedigit.countDigit
 import countthedigit.nbDig

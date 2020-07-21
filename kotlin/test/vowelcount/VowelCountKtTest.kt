@@ -1,4 +1,4 @@
-package src.test
+package src.test.vowelcount
 
 import org.junit.jupiter.api.Test
 import vowelcount.getCount

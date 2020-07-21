@@ -1,4 +1,4 @@
-package src.test
+package src.test.duplicatecount
 
 import duplicatecount.duplicateCount
 import org.junit.jupiter.api.Assertions.*

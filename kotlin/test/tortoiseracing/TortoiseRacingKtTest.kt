@@ -1,4 +1,4 @@
-package src.test
+package src.test.tortoiseracing
 
 import org.junit.jupiter.api.Test
 import tortoiseracing.race

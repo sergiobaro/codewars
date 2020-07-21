@@ -1,4 +1,4 @@
-package src.test
+package src.test.bus
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
